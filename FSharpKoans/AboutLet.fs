@@ -7,7 +7,7 @@ type ``about let``() =
     member this.LetBindsANameToAValue() =
         let x = 50
         
-        AssertEquality x __
+        AssertEquality x 50
     
     [<Koan>]
     member this.LetInfersTheTypesOfValuesWherePossible() =
@@ -17,7 +17,7 @@ type ``about let``() =
 
         let y = "a string"
         let expectedType = y.GetType()
-        AssertEquality expectedType typeof<FILL_ME_IN>
+        AssertEquality expectedType typeof<string>
 
     [<Koan>]
     member this.YouCanMakeTypesExplicit() =
@@ -27,8 +27,8 @@ type ``about let``() =
         let y:string = "forty two"
         let typeOfY = y.GetType()
 
-        AssertEquality typeOfX typeof<FILL_ME_IN>
-        AssertEquality typeOfY typeof<FILL_ME_IN>
+        AssertEquality typeOfX typeof<System.Int32>
+        AssertEquality typeOfY typeof<System.String>
 
         (* You don't usually need to provide explicit type annotations types for 
            local varaibles, but type annotations can come in handy in other 
@@ -39,7 +39,7 @@ type ``about let``() =
         let mutable x = 100
         x <- 200
 
-        AssertEquality x __
+        AssertEquality x 200
 
     [<Koan>]
     member this.YouCannotModifyALetBoundValueIfItIsNotMutable() =
@@ -47,10 +47,10 @@ type ``about let``() =
         
         //What happens if you uncomment the following?
         //
-        //x <- 100
+        //x <- 100 // JA - Value is not mutable error occurs
 
         //NOTE: Although you can't modify immutable values, it is possible
         //      to reuse the name of a value in some cases using "shadowing".
         let x = 100
          
-        AssertEquality x __
+        AssertEquality x 100
